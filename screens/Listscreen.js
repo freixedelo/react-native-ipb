@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Text, View, FlatList, TouchableHighlight } from 'react-native';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
 import {AsyncStorage} from 'react-native';
 
 class ListScreen extends React.Component {
@@ -17,7 +16,7 @@ class ListScreen extends React.Component {
 
   storeData = async () => {
       try {
-        AsyncStorage.setItem('keyID', 'teste 1450')
+        AsyncStorage.setItem('keyID', 'async test')
       } catch (e) {
         // saving error
       }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Text, View, TouchableHighlight } from 'react-native';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+
 import {AsyncStorage} from 'react-native';
 
 class DetailScreen extends React.Component {
@@ -25,9 +25,10 @@ class DetailScreen extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
-    const itemId = navigation.getParam('itemId', 'NO-ID');
-    const title = navigation.getParam('title', 'no title');
+    const { navigation, route } = this.props;
+	const { itemId ='NO-ID' } = route.params;
+    const { title ='no title' } = route.params;
+
     {this.getData()}
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
