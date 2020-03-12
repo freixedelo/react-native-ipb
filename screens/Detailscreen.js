@@ -4,10 +4,6 @@ import { Button, Text, View, TouchableHighlight } from "react-native";
 import { AsyncStorage } from "react-native";
 
 class DetailScreen extends Component {
-  static navigationOptions = {
-    title: "Detalhes"
-  };
-
   constructor(props) {
     super(props);
   }

@@ -3,10 +3,6 @@ import { Button, Text, View, FlatList, TouchableHighlight } from "react-native";
 import { AsyncStorage } from "react-native";
 
 class ListScreen extends Component {
-  static navigationOptions = {
-    title: "Listagem"
-  };
-
   constructor(props) {
     super(props);
     this.state = { isLoading: true };
