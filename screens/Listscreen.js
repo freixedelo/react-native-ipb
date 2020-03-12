@@ -1,76 +1,75 @@
-import React from 'react';
-import { Button, Text, View, FlatList, TouchableHighlight } from 'react-native';
-import {AsyncStorage} from 'react-native';
+import React, { Component } from "react";
+import { Button, Text, View, FlatList, TouchableHighlight } from "react-native";
+import { AsyncStorage } from "react-native";
 
-class ListScreen extends React.Component {
-
+class ListScreen extends Component {
   static navigationOptions = {
-    title: 'Listagem',
+    title: "Listagem"
   };
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={ isLoading: true}
-    {this.storeData()}
+    this.state = { isLoading: true };
+    {
+      this.storeData();
+    }
   }
 
   storeData = async () => {
-      try {
-        AsyncStorage.setItem('keyID', 'async test')
-      } catch (e) {
-        // saving error
-      }
+    try {
+      AsyncStorage.setItem("keyID", "async test");
+    } catch (e) {
+      // saving error
     }
+  };
 
-/*Fetch json*/
-  componentDidMount(){
-    return fetch('https://facebook.github.io/react-native/movies.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson.movies,
-        }, function(){
-
-        });
-
+  /*Fetch json*/
+  componentDidMount() {
+    return fetch("https://facebook.github.io/react-native/movies.json")
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            isLoading: false,
+            dataSource: responseJson.movies
+          },
+          function() {}
+        );
       })
-      .catch((error) =>{
+      .catch(error => {
         console.error(error);
       });
   }
 
-
   _onPress(item) {
-    this.props.navigation.navigate('Detail', {
+    this.props.navigation.navigate("Detail", {
       itemId: item.id,
-      title: item.title,
+      title: item.title
     });
   }
 
   render() {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
-      <View style={{flex: 1, paddingTop:20}}>
+      <View style={{ flex: 1, paddingTop: 20 }}>
         <FlatList
           data={this.state.dataSource}
-          keyExtractor={({id}, index) => id}
-          renderItem={({item}) =>
-              <TouchableHighlight
-            			onPress={() => this._onPress(item) }
-            			underlayColor='black'
-            		>
-        			<View>
-        				<Text style={{ fontSize: 24 }}>{ item.title }</Text>
-        				<Text>{ item.releaseYear }</Text>
-        			</View>
-              </TouchableHighlight>
-          }
+          keyExtractor={({ id }, index) => id}
+          renderItem={({ item }) => (
+            <TouchableHighlight
+              onPress={() => this._onPress(item)}
+              underlayColor="black"
+            >
+              <View>
+                <Text style={{ fontSize: 24 }}>{item.title}</Text>
+                <Text>{item.releaseYear}</Text>
+              </View>
+            </TouchableHighlight>
+          )}
         />
       </View>
     );
   }
 }
 
-export default ListScreen
+export default ListScreen;

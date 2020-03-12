@@ -1,37 +1,38 @@
-import React from 'react';
-import { Button, Text, View, TouchableHighlight } from 'react-native';
+import React, { Component } from "react";
+import { Button, Text, View, TouchableHighlight } from "react-native";
 
-import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from "react-native";
 
-class DetailScreen extends React.Component {
-
+class DetailScreen extends Component {
   static navigationOptions = {
-    title: 'Detalhes',
+    title: "Detalhes"
   };
 
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
   getData = async () => {
     try {
-      const value = await AsyncStorage.getItem('keyID')
-      if(value !== null) {
-        console.log(value)
+      const value = await AsyncStorage.getItem("keyID");
+      if (value !== null) {
+        console.log(value);
       }
-    } catch(e) {
+    } catch (e) {
       // error reading value
     }
-  }
+  };
 
   render() {
     const { navigation, route } = this.props;
-	const { itemId ='NO-ID' } = route.params;
-    const { title ='no title' } = route.params;
+    const { itemId = "NO-ID" } = route.params;
+    const { title = "no title" } = route.params;
 
-    {this.getData()}
+    {
+      this.getData();
+    }
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Details Screen</Text>
         <Text>ItemId: {itemId}</Text>
         <Text>Title: {title}</Text>
@@ -40,4 +41,4 @@ class DetailScreen extends React.Component {
   }
 }
 
-export default DetailScreen
+export default DetailScreen;
