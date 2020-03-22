@@ -35,7 +35,7 @@ class HomeScreen extends Component {
   };
 
   openAlert = () => {
-    const { buttonTitle, isEnable, inputTempText } = this.state;
+    const { inputTempText } = this.state;
     Alert.alert(
       "Update text?",
       inputTempText,

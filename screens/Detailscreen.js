@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Button, Text, View, TouchableHighlight } from "react-native";
-
-import { AsyncStorage } from "react-native";
+import { AsyncStorage, Text, View } from "react-native";
 
 class DetailScreen extends Component {
   constructor(props) {

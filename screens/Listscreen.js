@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Text, View, FlatList, TouchableHighlight } from "react-native";
 import { AsyncStorage } from "react-native";
+import { ListItem } from "react-native-elements";
 
 class ListScreen extends Component {
   constructor(props) {
@@ -52,15 +53,13 @@ class ListScreen extends Component {
           data={this.state.dataSource}
           keyExtractor={({ id }, index) => id}
           renderItem={({ item }) => (
-            <TouchableHighlight
+            <ListItem
+              title={item.title}
+              subtitle={item.releaseYear}
+              bottomDivider
+              chevron
               onPress={() => this._onPress(item)}
-              underlayColor="black"
-            >
-              <View>
-                <Text style={{ fontSize: 24 }}>{item.title}</Text>
-                <Text>{item.releaseYear}</Text>
-              </View>
-            </TouchableHighlight>
+            />
           )}
         />
       </View>
