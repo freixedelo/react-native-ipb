@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Alert, Button, Text, TextInput, View, StyleSheet } from "react-native";
+import { Alert, Text, View, StyleSheet } from "react-native";
+import { Button, Input } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 // import Constants from "expo-constants";
 
 class HomeScreen extends Component {
@@ -59,13 +61,14 @@ class HomeScreen extends Component {
         <Text style={styles.header}>Tutorial APP</Text>
         <View>
           <Text style={styles.title}>{inputText}</Text>
-          <TextInput
+          <Input
             style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
             onChangeText={text => this.updateTempText(text)}
             placeholder={"Add new text here"}
             editable={isEnable}
             value={inputTempText}
           />
+
           <View style={styles.fixToText}>
             <Button
               title={buttonTitle}
@@ -80,16 +83,19 @@ class HomeScreen extends Component {
             />
           </View>
         </View>
-        <>
+
+        <View style={styles.bottomContainer}>
           <Text style={styles.title}>
             This button navigates to another page.
           </Text>
           <Button
-            title="Check list"
+            title="List items"
             onPress={() => navigate("Listsc", { name: "unknown" })}
+            type="outline"
+            icon={<Icon name="list-ul" color="black" />}
             style={styles.button}
           />
-        </>
+        </View>
       </View>
     );
   }
@@ -101,11 +107,16 @@ const styles = StyleSheet.create({
     // marginTop: Constants.statusBarHeight,
     marginHorizontal: 20
   },
+  bottomContainer: {
+    position: "absolute",
+    bottom: 20,
+    alignItems: "center",
+    flexDirection: "row"
+  },
   header: {
     textAlign: "center",
     marginVertical: 10,
-    fontSize: 20,
-    textAlign: "center"
+    fontSize: 20
   },
   button: {
     maxWidth: 15,

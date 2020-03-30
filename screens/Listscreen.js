@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Text, View, FlatList, TouchableHighlight } from "react-native";
+import { Image, FlatList, View } from "react-native";
 import { AsyncStorage } from "react-native";
 import { ListItem } from "react-native-elements";
 
@@ -56,6 +56,12 @@ class ListScreen extends Component {
             <ListItem
               title={item.title}
               subtitle={item.releaseYear}
+              leftElement={
+                <Image
+                  style={{ width: 50, height: 50 }}
+                  source={require("../assets/icon.png")}
+                />
+              }
               bottomDivider
               chevron
               onPress={() => this._onPress(item)}
