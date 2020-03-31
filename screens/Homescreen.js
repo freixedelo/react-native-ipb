@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Alert, Text, View, StyleSheet } from "react-native";
-import { Button, Input } from "react-native-elements";
+import { Button, Header, Input } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 // import Constants from "expo-constants";
 
@@ -58,43 +58,65 @@ class HomeScreen extends Component {
     const { buttonTitle, isEnable, inputText, inputTempText } = this.state;
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Tutorial APP</Text>
-        <View>
-          <Text style={styles.title}>{inputText}</Text>
-          <Input
-            style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-            onChangeText={text => this.updateTempText(text)}
-            placeholder={"Add new text here"}
-            editable={isEnable}
-            value={inputTempText}
-          />
-
-          <View style={styles.fixToText}>
-            <Button
-              title={buttonTitle}
-              onPress={this.updateState}
-              style={styles.button}
+        <Header
+          placement="left"
+          leftComponent={{
+            icon: "menu",
+            color: "#fff",
+            onPress: () => {
+              this.props.navigation.toggleDrawer();
+            }
+          }}
+          backgroundColor="#009688"
+          centerComponent={{ text: "Homepage", style: { color: "#fff" } }}
+          rightComponent={{ icon: "info", color: "#fff" }}
+        />
+        <View style={styles.content}>
+          <Text style={styles.header}>Tutorial APP</Text>
+          <View>
+            <Text style={styles.title}>{inputText}</Text>
+            <Input
+              style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+              onChangeText={text => this.updateTempText(text)}
+              placeholder={"Add new text here"}
+              editable={isEnable}
+              value={inputTempText}
             />
+
+            <View style={styles.fixToText}>
+              <Button
+                title={buttonTitle}
+                onPress={this.updateState}
+                buttonStyle={styles.button}
+              />
+              <Button
+                title="Update Text"
+                disabled={!isEnable || inputTempText === ""}
+                onPress={this.openAlert}
+                buttonStyle={styles.button}
+              />
+            </View>
+          </View>
+
+          <View style={styles.bottomContainer}>
+            <Text style={styles.title}>
+              This button navigates to another page.
+            </Text>
             <Button
-              title="Update Text"
-              disabled={!isEnable || inputTempText === ""}
-              onPress={this.openAlert}
-              style={styles.button}
+              title="List items"
+              onPress={() => navigate("Listsc", { name: "unknown" })}
+              type="outline"
+              icon={
+                <Icon
+                  name="list-ul"
+                  color="#009688"
+                  style={{ paddingRight: 5 }}
+                />
+              }
+              buttonStyle={{ marginLeft: 15, borderColor: "#009688" }}
+              titleStyle={{ color: "#009688" }}
             />
           </View>
-        </View>
-
-        <View style={styles.bottomContainer}>
-          <Text style={styles.title}>
-            This button navigates to another page.
-          </Text>
-          <Button
-            title="List items"
-            onPress={() => navigate("Listsc", { name: "unknown" })}
-            type="outline"
-            icon={<Icon name="list-ul" color="black" />}
-            style={styles.button}
-          />
         </View>
       </View>
     );
@@ -103,6 +125,9 @@ class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  content: {
     flex: 1,
     // marginTop: Constants.statusBarHeight,
     marginHorizontal: 20
@@ -119,8 +144,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   button: {
-    maxWidth: 15,
-    backgroundColor: "#212121"
+    backgroundColor: "#009688"
   },
   title: {
     textAlign: "center",

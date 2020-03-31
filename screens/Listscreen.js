@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Image, FlatList, View } from "react-native";
-import { AsyncStorage } from "react-native";
-import { ListItem } from "react-native-elements";
+import { AsyncStorage, Image, FlatList, View } from "react-native";
+import { ListItem, Header } from "react-native-elements";
 
 class ListScreen extends Component {
   constructor(props) {
@@ -46,9 +45,21 @@ class ListScreen extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
-      <View style={{ flex: 1, paddingTop: 20 }}>
+      <View style={{ flex: 1 }}>
+        <Header
+          placement="left"
+          leftComponent={{
+            icon: "menu",
+            color: "#fff",
+            onPress: () => {
+              this.props.navigation.toggleDrawer();
+            }
+          }}
+          backgroundColor="#009688"
+          centerComponent={{ text: "Using FlatList", style: { color: "#fff" } }}
+          rightComponent={{ icon: "info", color: "#fff" }}
+        />
         <FlatList
           data={this.state.dataSource}
           keyExtractor={({ id }, index) => id}
