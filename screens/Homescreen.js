@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Alert, Text, View, StyleSheet } from "react-native";
 import { Button, Header, Input } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { styles, buttons } from "../style/main";
 // import Constants from "expo-constants";
 
 class HomeScreen extends Component {
@@ -87,13 +88,13 @@ class HomeScreen extends Component {
               <Button
                 title={buttonTitle}
                 onPress={this.updateState}
-                buttonStyle={styles.button}
+                buttonStyle={buttons.button}
               />
               <Button
                 title="Update Text"
                 disabled={!isEnable || inputTempText === ""}
                 onPress={this.openAlert}
-                buttonStyle={styles.button}
+                buttonStyle={buttons.button}
               />
             </View>
           </View>
@@ -122,40 +123,5 @@ class HomeScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  content: {
-    flex: 1,
-    // marginTop: Constants.statusBarHeight,
-    marginHorizontal: 20
-  },
-  bottomContainer: {
-    position: "absolute",
-    bottom: 20,
-    alignItems: "center",
-    flexDirection: "row"
-  },
-  header: {
-    textAlign: "center",
-    marginVertical: 10,
-    fontSize: 20
-  },
-  button: {
-    backgroundColor: "#009688"
-  },
-  title: {
-    textAlign: "center",
-    marginVertical: 8
-  },
-  fixToText: {
-    marginVertical: 10,
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between"
-  }
-});
 
 export default HomeScreen;
