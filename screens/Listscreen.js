@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { AsyncStorage, Image, FlatList, View } from "react-native";
+import {
+  ActivityIndicator,
+  AsyncStorage,
+  Image,
+  FlatList,
+  View,
+} from "react-native";
 import { ListItem, Header } from "react-native-elements";
 
 class ListScreen extends Component {
@@ -20,31 +26,37 @@ class ListScreen extends Component {
   };
 
   /*Fetch json*/
-  componentDidMount() {
-    return fetch("https://facebook.github.io/react-native/movies.json")
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState(
-          {
-            isLoading: false,
-            dataSource: responseJson.movies
-          },
-          function() {}
-        );
-      })
-      .catch(error => {
-        console.error(error);
+  async componentDidMount() {
+    try {
+      let response = await fetch("https://reactnative.dev/movies.json");
+      let json = await response.json();
+      this.setState({
+        isLoading: false,
+        dataSource: json.movies,
       });
+    } catch (err) {
+      console.log("Error fetching data-----------", err);
+    }
   }
 
   _onPress(item) {
     this.props.navigation.navigate("Detail", {
       itemId: item.id,
-      title: item.title
+      title: item.title,
     });
   }
 
   render() {
+    const { isLoading } = this.state;
+
+    if (isLoading) {
+      return (
+        <View>
+          <ActivityIndicator size="large" />
+        </View>
+      );
+    }
+
     return (
       <View style={{ flex: 1 }}>
         <Header
@@ -54,7 +66,7 @@ class ListScreen extends Component {
             color: "#fff",
             onPress: () => {
               this.props.navigation.toggleDrawer();
-            }
+            },
           }}
           backgroundColor="#009688"
           centerComponent={{ text: "Using FlatList", style: { color: "#fff" } }}
