@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Alert, Text, View, StyleSheet } from "react-native";
-import { Button, Header, Input } from "react-native-elements";
+import { Alert, Text, View } from "react-native";
+import { Button, Input } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles, buttons } from "../style/main";
+import { OwnHeader } from "./shared/Header.js";
 // import Constants from "expo-constants";
 
 class HomeScreen extends Component {
@@ -12,7 +13,7 @@ class HomeScreen extends Component {
       isEnable: true,
       inputText: "Change this text",
       inputTempText: "",
-      buttonTitle: "Disable"
+      buttonTitle: "Disable",
     };
   }
 
@@ -20,20 +21,20 @@ class HomeScreen extends Component {
     const { isEnable } = this.state;
     this.setState({
       isEnable: !isEnable,
-      buttonTitle: !isEnable ? "Disable" : "Enable"
+      buttonTitle: !isEnable ? "Disable" : "Enable",
     });
   };
 
   updateText = () => {
     const { inputTempText } = this.state;
     this.setState({
-      inputText: inputTempText
+      inputText: inputTempText,
     });
   };
 
-  updateTempText = text => {
+  updateTempText = (text) => {
     this.setState({
-      inputTempText: text
+      inputTempText: text,
     });
   };
 
@@ -46,9 +47,9 @@ class HomeScreen extends Component {
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "OK", onPress: this.updateText }
+        { text: "OK", onPress: this.updateText },
       ],
       { cancelable: false }
     );
@@ -59,26 +60,14 @@ class HomeScreen extends Component {
     const { buttonTitle, isEnable, inputText, inputTempText } = this.state;
     return (
       <View style={styles.container}>
-        <Header
-          placement="left"
-          leftComponent={{
-            icon: "menu",
-            color: "#fff",
-            onPress: () => {
-              this.props.navigation.toggleDrawer();
-            }
-          }}
-          backgroundColor="#009688"
-          centerComponent={{ text: "Homepage", style: { color: "#fff" } }}
-          rightComponent={{ icon: "info", color: "#fff" }}
-        />
+        <OwnHeader navigation={this.props.navigation} title="Homepage" />
         <View style={styles.content}>
           <Text style={styles.header}>Tutorial APP</Text>
           <View>
             <Text style={styles.title}>{inputText}</Text>
             <Input
               style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-              onChangeText={text => this.updateTempText(text)}
+              onChangeText={(text) => this.updateTempText(text)}
               placeholder={"Add new text here"}
               editable={isEnable}
               value={inputTempText}

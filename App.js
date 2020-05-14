@@ -7,8 +7,21 @@ import HomeScreen from "./screens/Homescreen.js";
 import DetailScreen from "./screens/Detailscreen.js";
 import ListScreen from "./screens/Listscreen.js";
 
-// const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
+function List() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="Listsc"
+        component={ListScreen}
+        options={{ title: "List Items" }}
+      />
+      <Stack.Screen name="Detail" component={DetailScreen} />
+    </Stack.Navigator>
+  );
+}
 
 function App() {
   return (
@@ -17,18 +30,9 @@ function App() {
         <Drawer.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: "Homepage" }}
+          // options={{ title: "Homepage", gestureEnabled: false }}
         />
-        <Drawer.Screen
-          name="Detail"
-          component={DetailScreen}
-          options={{ title: "Detail" }}
-        />
-        <Drawer.Screen
-          name="Listsc"
-          component={ListScreen}
-          options={{ title: "List Items" }}
-        />
+        <Drawer.Screen name="List" component={List} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

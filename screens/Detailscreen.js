@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { AsyncStorage, Text, View } from "react-native";
 import { Header } from "react-native-elements";
+import { OwnHeader } from "./shared/Header.js";
 
 class DetailScreen extends Component {
   constructor(props) {
@@ -28,19 +29,7 @@ class DetailScreen extends Component {
     }
     return (
       <View style={{ flex: 1 }}>
-        <Header
-          placement="left"
-          leftComponent={{
-            icon: "menu",
-            color: "#fff",
-            onPress: () => {
-              this.props.navigation.toggleDrawer();
-            }
-          }}
-          backgroundColor="#009688"
-          centerComponent={{ text: "Detail Page", style: { color: "#fff" } }}
-          rightComponent={{ icon: "info", color: "#fff" }}
-        />
+        <OwnHeader navigation={this.props.navigation} title="Detail Page" />
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
