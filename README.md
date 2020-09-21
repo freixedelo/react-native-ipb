@@ -5,10 +5,16 @@ Developing a React Native App using Expo. Aiming experiencing some components, n
 ## Getting Started
 
 The App has three screens in which we tried different components and behaviours.
+It was used nested navigation.
+
+Next steps:
+
+- Use of Functional components
+- Use Hooks
 
 ### Screens
 
-Home
+Home screen
 
 ```
 Alert
@@ -18,7 +24,7 @@ StyleSheet
 State - Developed some logic that works with state
 ```
 
-List
+List screen
 
 ```
 AsyncStorage
@@ -27,8 +33,9 @@ ListItem - react-native-elements
 fetch
 ```
 
-Detail
+Detail screen
 
 ```
 AsyncStorage
+Image
 ```

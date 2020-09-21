@@ -4,7 +4,6 @@ import { Button, Input } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles, buttons } from "../style/main";
 import { OwnHeader } from "./shared/Header.js";
-// import Constants from "expo-constants";
 
 class HomeScreen extends Component {
   constructor() {
@@ -94,7 +93,7 @@ class HomeScreen extends Component {
             </Text>
             <Button
               title="List items"
-              onPress={() => navigate("Listsc", { name: "unknown" })}
+              onPress={() => navigate("List", { name: "unknown" })}
               type="outline"
               icon={
                 <Icon

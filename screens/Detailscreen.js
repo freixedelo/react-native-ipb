@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { AsyncStorage, Text, View } from "react-native";
-import { Header } from "react-native-elements";
+import { AsyncStorage, Image, Text, View } from "react-native";
 import { OwnHeader } from "./shared/Header.js";
 
 class DetailScreen extends Component {
@@ -33,6 +32,10 @@ class DetailScreen extends Component {
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
+          <Image
+            style={{ width: 200, height: 50 }}
+            source={require("../assets/IPB-Cor.png")}
+          />
           <Text>Details Screen</Text>
           <Text>ItemId: {itemId}</Text>
           <Text>Title: {title}</Text>
