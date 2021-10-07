@@ -1,12 +1,7 @@
 {
   "expo": {
-    "name": "CM",
-    "slug": "CM",
-    "privacy": "public",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "name": "ipb-react-native",
+    "slug": "ipb-react-native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,6 +19,14 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": ""
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
