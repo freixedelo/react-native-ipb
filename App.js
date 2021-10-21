@@ -5,14 +5,18 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Home } from "./screens/Home";
 import { List } from "./screens/List";
+import { Detail } from "./screens/Detail";
+import { Contact } from "./screens/Contact";
 
 const Drawer = createDrawerNavigator();
 
-function DrawerScreens() {
+function ListStack() {
   return (
-    <Drawer.Navigator initialRouteName="List">
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
       <Drawer.Screen name="List" component={List} />
-    </Drawer.Navigator>
+      <Stack.Screen name="Detail" component={Detail} />
+    </Stack.Navigator>
   );
 }
 
@@ -21,10 +25,10 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Drawer" component={DrawerScreens} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="ListStack">
+        <Drawer.Screen name="ListStack" component={ListStack} />
+        <Drawer.Screen name="Contact" component={Contact} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
