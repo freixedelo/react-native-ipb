@@ -48,7 +48,12 @@ const students = [
   },
 ];
 
-export function List(props) {
+type Props = {
+  navigation: any;
+  route: any;
+};
+
+export function List(props: Props) {
   const { navigation } = props;
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
