@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-elements";
@@ -12,8 +11,6 @@ export function Home(props: Props) {
   const { navigation } = props;
 
   const [xpto, setXpto] = useState<any>(null);
-
-  setXpto("safsafsd");
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

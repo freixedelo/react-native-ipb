@@ -1,69 +1,55 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   Button,
   FlatList,
-  TouchableOpacity,
   Pressable,
 } from "react-native";
-
-const students = [
-  {
-    name: "Manuel",
-    age: 18,
-    course: "EI",
-    school: "ESTIG",
-    classification: 12,
-  },
-  {
-    name: "Anacleto",
-    age: 20,
-    course: "EI",
-    school: "ESA",
-    classification: 9,
-  },
-  {
-    name: "Maria",
-    age: 19,
-    course: "EI",
-    school: "ESTIG",
-    classification: 5,
-  },
-  {
-    name: "Antonieta",
-    age: 18,
-    course: "EI",
-    school: "ESTIG",
-    classification: 10,
-  },
-  {
-    name: "Joana",
-    age: 18,
-    course: "EI",
-    school: "ESA",
-    classification: 12,
-  },
-];
+import { ListItem } from "react-native-elements";
 
 type Props = {
   navigation: any;
   route: any;
 };
 
+type Coin = {
+  id: string;
+  symbol: string;
+  priceUsd: string;
+};
+
 export function List(props: Props) {
   const { navigation } = props;
+
+  const [coins, setCoins] = useState<Coin[]>([]);
+
+  useEffect(() => {
+    const getMoviesFromApiAsync = async () => {
+      try {
+        const response = await fetch("https://api.coincap.io/v2/assets");
+        const json = await response.json();
+        setCoins(json.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getMoviesFromApiAsync();
+  }, []);
+
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={{ flex: 1 }}>
       <Text>List test</Text>
       <FlatList
-        data={students}
+        data={coins}
         renderItem={({ item }) => {
           return (
-            <Pressable onPress={() => navigation.navigate("Detail", item)}>
-              <Text>{item.name}</Text>
+            <Pressable onPress={() => navigation.navigate("Detail", item.id)}>
+              <ListItem bottomDivider>
+                <Text>{item.symbol}</Text>
+              </ListItem>
             </Pressable>
           );
         }}
