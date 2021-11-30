@@ -19,6 +19,10 @@ export function Home(props: Props) {
         title="Move to list"
         onPress={() => navigation.navigate("List")}
       />
+      <Button
+        title="Move to camera"
+        onPress={() => navigation.navigate("Camera")}
+      />
     </View>
   );
 }

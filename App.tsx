@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Home } from "./screens/Home";
+import Camera from "./screens/Camera";
 import { List } from "./screens/List";
 import { Detail } from "./screens/Detail";
 import { Contact } from "./screens/Contact";
@@ -14,6 +15,7 @@ function ListStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Camera" component={Camera} />
       <Stack.Screen name="List" component={List} />
       <Stack.Screen name="Detail" component={Detail} />
     </Stack.Navigator>
